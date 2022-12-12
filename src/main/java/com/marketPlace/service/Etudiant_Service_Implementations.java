@@ -19,7 +19,7 @@ import com.marketPlace.model.Etudiant2;
 @Service  //component qui va interragir avec la base de donnée
 public class Etudiant_Service_Implementations implements Etudiant_Service {
 
-	
+	//test
 	@Autowired
 	private Etudiant_dao etudiant_dao;
 	
