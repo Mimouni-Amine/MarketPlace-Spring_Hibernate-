@@ -50,23 +50,25 @@ public class Utilisateur {
 	@Column(name="email")
 	private String email;
 	
+	@Transient
 	@Column(name="date_dinscription")
 	private String date_dinscription;	
 	
+	@Transient
 	@Column(name = "photo_de_profil")
 	private Blob photo_de_profil;
 	
-	@Transient
+
 	@OneToOne(cascade= {CascadeType.ALL})
 	@JoinColumn(name="client_id")
 	private Client obj_client;
 	
-	@Transient
+
 	@OneToOne(cascade= {CascadeType.ALL})
 	@JoinColumn(name="addresse_id")
 	private Addresse obj_addresse;
 
-	@Transient
+
 	@OneToOne(cascade= {CascadeType.ALL})
 	@JoinColumn(name="vendeur_id")
 	private Vendeur obj_vendeur;

@@ -21,6 +21,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="client")
@@ -36,6 +37,7 @@ public class Client {
 	
 	@Column(name="moyen_de_payement")
 	private String moyen_de_payement;
+
 
 	@OneToOne(mappedBy= "obj_client")
 	private Utilisateur obj_utilisateur;

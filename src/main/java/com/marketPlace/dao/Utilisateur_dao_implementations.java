@@ -3,14 +3,16 @@ package com.marketPlace.dao;
 import org.hibernate.Session;
 
 
+
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.marketPlace.model.Etudiant;
-import com.marketPlace.model.Etudiant2;
+import com.marketPlace.model.Client;
 import com.marketPlace.model.Utilisateur;
+
 
 
 
@@ -28,8 +30,19 @@ public class Utilisateur_dao_implementations implements Utilisateur_dao {
 
 			session.saveOrUpdate(utilisateur1);
 	}
-	
-	
+
+
+
+	public void ajout_Client_a_User(Client client1, int idUser) {
+		
+		Session session= sessionFactory.getCurrentSession();
+		
+		
+		Utilisateur utilisateur1 = session.get(Utilisateur.class, idUser);
+		utilisateur1.setObj_client(client1);
+		session.saveOrUpdate(utilisateur1);
+		
+	}
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
@@ -38,7 +51,6 @@ public class Utilisateur_dao_implementations implements Utilisateur_dao {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-
 
 
 	

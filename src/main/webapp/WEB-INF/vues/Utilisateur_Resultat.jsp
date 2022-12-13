@@ -29,7 +29,7 @@ table, th, td {
 
 <head>
 <meta charset="UTF-8">
-<title>Resultats Etudiant</title>
+<title>Resultats Utilisateur</title>
 </head>
 <body>
 

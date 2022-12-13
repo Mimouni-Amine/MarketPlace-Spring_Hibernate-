@@ -4,6 +4,7 @@ package com.marketPlace.controleur;
 
 import javax.validation.Valid;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -14,10 +15,9 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.marketPlace.dao.Etudiant_dao;
-import com.marketPlace.model.Etudiant;
+import com.marketPlace.model.Client;
 import com.marketPlace.model.Utilisateur;
-import com.marketPlace.service.Etudiant_Service;
+
 import com.marketPlace.service.Utilisateur_Service;
 
 
@@ -49,24 +49,32 @@ public class UtilisateurServelet {
 
 
 	@RequestMapping("/Utilisateur_add")
-	public String afficherHelloPage3(@Valid @ModelAttribute("utilisateur1") Utilisateur utilisateur1, BindingResult bindingResult) {
+	public String utilisateur_add(@Valid @ModelAttribute("utilisateur1") Utilisateur utilisateur1, BindingResult bindingResult) {
 		//etudiant1.setId(5);
-		
-		
-		
-		
+
 		if (bindingResult.hasErrors()) {
-			
 			return "Utilisateur_Resultat";
 		}else {
-			utilisateur_Service1.ajout_Utilisateur(null);
+			
+			utilisateur_Service1.ajout_Utilisateur(utilisateur1);
 			return "Utilisateur_Resultat";
 		}
-		
-		
-//en Plus 
-		
-		
+
 	}
+	
+	@RequestMapping("/Client_Add_toUser_ID")
+	public String client_Add_toUser_ID(@Valid @ModelAttribute("client1") Client client1, BindingResult bindingResult) {
+		//etudiant1.setId(5);
+
+		if (bindingResult.hasErrors()) {
+			return "Utilisateur_Resultat";
+		}else {
+			
+			utilisateur_Service1.ajout_Client_a_User(client1, 15);
+			return "Utilisateur_Resultat";
+		}
+
+	}
+	
 
 }

@@ -15,33 +15,31 @@
 
 <!-- 	<form action="resultat_formulaire.jsp"> -->
 	<form:form action="Utilisateur_add" modelAttribute="utilisateur1">
+			User_name: <form:input type="text" name="user_name" path="user_name"/>  <form:errors path="user_name" cssClass="error"/>
+		<br>
+		
+		Mot_de_passe: <form:input type="text"  name="mot_de_passe"  path="mot_de_passe"/><form:errors path="mot_de_passe" cssClass="error"/>
+		<br>
+		
+		
 		Nom: <form:input type="text" name="nom" path="nom"/>  <form:errors path="nom" cssClass="error"/>
 		<br>
 		
 		Prenom: <form:input type="text"  name="prenom"  path="prenom"/><form:errors path="prenom" cssClass="error"/>
 		<br>
 		
-		immatriculation: <form:input type="text"  name="immatriculation"  path="immatriculation"/><form:errors path="immatriculation" cssClass="error"/>
-		<br>
-		BirthDate: <form:input type="text"  name="birthDate"  path="birthDate"/><form:errors path="birthDate" cssClass="error"/>
-		<br>
-		<h2>Age:</h2>
-		<form:input type="text" name="age" path="age"/>
+
+		Numero de telephone: <form:input type="text" name="numero" path="numero"/>  <form:errors path="numero" cssClass="error"/>
 		<br>
 		
-		<h2>Votre Pays est:</h2><form:select name="pays" path="paysChoisi">
-	    <form:options items="${etudiant1.pays}"></form:options>
-
-	
-	</form:select>
-	<br>
-	Maths<form:checkbox path="matieres" name="cours" value="Maths"/>
-	<br>
-	Physique<form:checkbox  path="matieres" name="cours" value="Physique"/>
-	<br>
-	Sciences<form:checkbox  path="matieres" name="cours" value="Sciences"/>
-	<br>
+		Email: <form:input type="text"  name="email"  path="email"/><form:errors path="email" cssClass="error"/>
+		<br>
+		
+		
+		<br>
 		<input type="submit" value="valider">
+		
+		
 
 	</form:form>
 
