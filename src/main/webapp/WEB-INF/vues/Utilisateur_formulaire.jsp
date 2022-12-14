@@ -44,6 +44,7 @@
 	</form:form>
 
 
+<a href="client_add" class="button" >Inscrire Compte Client</a>
 
  
 </body>

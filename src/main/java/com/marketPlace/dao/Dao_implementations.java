@@ -18,7 +18,7 @@ import com.marketPlace.model.Utilisateur;
 
 
 @Repository  //component qui va interragir avec la base de donnée
-public class Utilisateur_dao_implementations implements Utilisateur_dao {
+public class Dao_implementations implements Dao {
 
 	
 	@Autowired
@@ -38,10 +38,22 @@ public class Utilisateur_dao_implementations implements Utilisateur_dao {
 		Session session= sessionFactory.getCurrentSession();
 		
 		
-		Utilisateur utilisateur1 = session.get(Utilisateur.class, idUser);
-		utilisateur1.setObj_client(client1);
-		session.saveOrUpdate(utilisateur1);
 		
+		Utilisateur utilisateur1 = session.get(Utilisateur.class, idUser);
+		System.out.println(utilisateur1);
+		utilisateur1.setObj_client(client1);
+		session.saveOrUpdate(client1);
+		session.saveOrUpdate(utilisateur1);
+	}
+	
+	
+	
+	
+	public int get_Current_User_ID(Utilisateur utilisateur1){
+		
+		Session session= sessionFactory.getCurrentSession();
+		Integer id = (Integer)session.save(utilisateur1);
+		return id;
 	}
 
 	public SessionFactory getSessionFactory() {
