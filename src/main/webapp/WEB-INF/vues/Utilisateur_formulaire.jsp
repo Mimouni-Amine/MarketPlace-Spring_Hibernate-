@@ -14,6 +14,8 @@
 
 
 <!-- 	<form action="resultat_formulaire.jsp"> -->
+
+<div>
 	<form:form action="Utilisateur_add" modelAttribute="utilisateur1">
 			User_name: <form:input type="text" name="user_name" path="user_name"/>  <form:errors path="user_name" cssClass="error"/>
 		<br>
@@ -42,7 +44,7 @@
 		
 
 	</form:form>
-
+</div>
 
 <a href="client_add" class="button" >Inscrire Compte Client</a>
 

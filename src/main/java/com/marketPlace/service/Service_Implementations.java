@@ -24,9 +24,10 @@ public class Service_Implementations implements Service1 {
 	private Dao utilisateur_dao1;
 	
 	@Transactional
-	public void ajout_Utilisateur(Utilisateur utilisateur1){
+	public int ajout_Utilisateur_and_Return_his_ID(Utilisateur utilisateur1) {
 		
-		utilisateur_dao1.ajout_Utilisateur(utilisateur1);
+		
+		return utilisateur_dao1.ajout_Utilisateur_and_Return_his_ID(utilisateur1);
 	}
 	
 	@Transactional
@@ -36,13 +37,12 @@ public class Service_Implementations implements Service1 {
 		utilisateur_dao1.ajout_Client_a_User(client1, idUser);
 	}
 	
+
+
 	@Transactional
 	@Override
-	public int get_Current_User_ID(Utilisateur utilisateur1) {
-		
-	return utilisateur_dao1.get_Current_User_ID(utilisateur1);
+	public int check_UserName_and_Password(String userName, String password){
+		return utilisateur_dao1.check_UserName_and_Password(userName, password);
 	}
-
-
 
 }

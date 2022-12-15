@@ -11,7 +11,7 @@
 <body>
 
 
-
+<center><h1>Devenir Client Inscription</h1></center>
 
 <!-- 	<form action="resultat_formulaire.jsp"> -->
 	<form:form action="Client_Add_toUser_ID" modelAttribute="client1">

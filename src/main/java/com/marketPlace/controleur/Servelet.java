@@ -2,9 +2,10 @@ package com.marketPlace.controleur;
 
 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -21,13 +22,15 @@ import com.marketPlace.model.Utilisateur;
 import com.marketPlace.service.Service1;
 
 
-
+//need to have unique username
+//Validation
 @Controller
 public class Servelet {
 	
 	private int utilisateurActuel_ID;
+	
 	@Autowired
-	private Service1 utilisateur_Service1;
+	private Service1 service1;
 	
 	
 	@InitBinder
@@ -42,7 +45,21 @@ public class Servelet {
 	
 	
 	//When Connected User Add to get his ID Associate it with utilisateurActuel_ID and Use the dao Method
+
 	@RequestMapping("/")
+	public String pagePrincipale() {
+		
+		return "Page_Principale";
+	//	return "Utilisateur_Connexion";
+	}
+	
+	@RequestMapping("/versPage_ConnexionUtilisateur")
+	public String versPageConnexionUtilisateur() {
+		return "Utilisateur_Connexion";
+	}
+	
+	
+	@RequestMapping("/versPage_Inscrire_Utilisateur")
 	public String InitialiserListe( Model model) {
 		
 		Utilisateur utilisateur1 = new Utilisateur();
@@ -50,7 +67,10 @@ public class Servelet {
 		model.addAttribute("utilisateur1",utilisateur1);
 		model.addAttribute("client1",client1);
 		return "Utilisateur_formulaire";
+		
 	}
+	
+	
 	
 	@RequestMapping("/client_add")
 	public String client_add(Model model) {
@@ -59,17 +79,41 @@ public class Servelet {
 		model.addAttribute("client1",client1);
 		return "Client_formulaire";
 	}
+	
+
+	@RequestMapping("/utilisateur_Connexion")
+	public String utilisateur_Connexion(HttpServletRequest request,Utilisateur utilisateur1){
+		
+		String user_name= request.getParameter("user_name");
+		String password= request.getParameter("password");
+		
+		System.out.println(user_name);
+		System.out.println(password);
+		this.utilisateurActuel_ID=service1.check_UserName_and_Password(user_name, password);
+		if(this.utilisateurActuel_ID==-1) {
+			return "Utilisateur_Connexion";
+		}else {
+			//return "/client_add";
+			return "Page_Client_OU_Vendeur";
+		}
+		
+		
+		
+		
+		
+	}
 
 	@RequestMapping("/Utilisateur_add")
 	public String utilisateur_add(@Valid @ModelAttribute("utilisateur1") Utilisateur utilisateur1, BindingResult bindingResult) {
 		//etudiant1.setId(5);
 
 		if (bindingResult.hasErrors()) {
+			//return "Utilisateur_formulaire";
 			return "Utilisateur_formulaire";
 		}else {
 			
-			utilisateur_Service1.ajout_Utilisateur(utilisateur1);
-			this.utilisateurActuel_ID=utilisateur_Service1.get_Current_User_ID(utilisateur1);
+			this.utilisateurActuel_ID=service1.ajout_Utilisateur_and_Return_his_ID(utilisateur1);
+			System.out.println(this.utilisateurActuel_ID);
 			return "Utilisateur_formulaire";
 		}
 
@@ -79,7 +123,7 @@ public class Servelet {
 	public String client_Add_toUser_ID(@Valid @ModelAttribute("client1") Client client1, BindingResult bindingResult) {
 		//etudiant1.setId(5);
 		
-		utilisateur_Service1.ajout_Client_a_User(client1, this.utilisateurActuel_ID);
+		service1.ajout_Client_a_User(client1, this.utilisateurActuel_ID);
 		
 		if (bindingResult.hasErrors()) {
 			return "Utilisateur_Resultat";
