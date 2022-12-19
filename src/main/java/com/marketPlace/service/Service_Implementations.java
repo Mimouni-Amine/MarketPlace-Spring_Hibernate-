@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.marketPlace.dao.Dao;
 import com.marketPlace.model.Client;
 import com.marketPlace.model.Utilisateur;
+import com.marketPlace.model.Vendeur;
 
 
 
@@ -37,12 +38,23 @@ public class Service_Implementations implements Service1 {
 		utilisateur_dao1.ajout_Client_a_User(client1, idUser);
 	}
 	
-
+	@Transactional
+	@Override
+	public void ajout_Vendeur_a_User(Vendeur vendeur1, int idUser) {
+		
+		utilisateur_dao1.ajout_Vendeur_a_User(vendeur1, idUser);
+	}
 
 	@Transactional
 	@Override
 	public int check_UserName_and_Password(String userName, String password){
 		return utilisateur_dao1.check_UserName_and_Password(userName, password);
+	}
+
+	@Transactional
+	@Override
+	public int get_User_ID(Utilisateur utilisateur1) {
+		return utilisateur_dao1.get_User_ID(utilisateur1);
 	}
 
 }

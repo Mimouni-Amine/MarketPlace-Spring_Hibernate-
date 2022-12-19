@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Formulaire Client</title>
+<title>Choisir Client ou Vendeur</title>
 <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
@@ -18,7 +18,7 @@
 
 <a href="client_add" class="button" >Se connecter en tant que Client</a>
 <br>
-<a href="" class="button" >Se connecter en tant que Vendeur</a>
+<a href="vendeur_add" class="button" >Se connecter en tant que Vendeur</a>
 
  
 </body>

@@ -2,6 +2,7 @@ package com.marketPlace.model;
 
 import java.io.FileWriter;
 
+
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.sql.Blob;

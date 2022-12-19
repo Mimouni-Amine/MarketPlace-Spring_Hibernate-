@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.marketPlace.model.Client;
 import com.marketPlace.model.Utilisateur;
-
+import com.marketPlace.model.Vendeur;
 import com.marketPlace.service.Service1;
 
 
@@ -80,6 +80,14 @@ public class Servelet {
 		return "Client_formulaire";
 	}
 	
+	@RequestMapping("/vendeur_add")
+	public String vendeur_add(Model model) {
+		Vendeur vendeur1= new Vendeur();
+		
+		model.addAttribute("vendeur1",vendeur1);
+		return "Vendeur_formulaire";
+	}
+	
 
 	@RequestMapping("/utilisateur_Connexion")
 	public String utilisateur_Connexion(HttpServletRequest request,Utilisateur utilisateur1){
@@ -96,26 +104,33 @@ public class Servelet {
 			//return "/client_add";
 			return "Page_Client_OU_Vendeur";
 		}
-		
-		
-		
-		
-		
 	}
 
 	@RequestMapping("/Utilisateur_add")
 	public String utilisateur_add(@Valid @ModelAttribute("utilisateur1") Utilisateur utilisateur1, BindingResult bindingResult) {
 		//etudiant1.setId(5);
-
+		 System.out.println("entered");
+		
+		if(service1.ajout_Utilisateur_and_Return_his_ID(utilisateur1)==-1) {
+			System.out.println("Returne -1");
+			return "Utilisateur_formulaire";
+		}else {
+			//return "/client_add";
+			
+			
+			System.out.println("Returned the ID");
+			this.utilisateurActuel_ID=service1.get_User_ID(utilisateur1);
+			System.out.println(this.utilisateurActuel_ID);
+			return "Page_Client_OU_Vendeur";
+		}
+		/*
 		if (bindingResult.hasErrors()) {
 			//return "Utilisateur_formulaire";
 			return "Utilisateur_formulaire";
 		}else {
 			
-			this.utilisateurActuel_ID=service1.ajout_Utilisateur_and_Return_his_ID(utilisateur1);
-			System.out.println(this.utilisateurActuel_ID);
-			return "Utilisateur_formulaire";
-		}
+
+		}  */
 
 	}
 	
@@ -124,6 +139,22 @@ public class Servelet {
 		//etudiant1.setId(5);
 		
 		service1.ajout_Client_a_User(client1, this.utilisateurActuel_ID);
+		
+		if (bindingResult.hasErrors()) {
+			return "Utilisateur_Resultat";
+		}else {
+			
+			
+			return "Utilisateur_Resultat";
+		}
+
+	}
+	
+	@RequestMapping("/Vendeur_Add_toUser_ID")
+	public String vendeur_Add_toUser_ID(@Valid @ModelAttribute("vendeur1") Vendeur vendeur1, BindingResult bindingResult) {
+		//etudiant1.setId(5);
+		
+		service1.ajout_Vendeur_a_User(vendeur1, this.utilisateurActuel_ID);
 		
 		if (bindingResult.hasErrors()) {
 			return "Utilisateur_Resultat";
