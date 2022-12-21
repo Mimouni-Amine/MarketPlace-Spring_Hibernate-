@@ -16,9 +16,16 @@
 <!-- 	<form action="resultat_formulaire.jsp"> -->
 
 
-<a href="client_add" class="button" >Se connecter en tant que Client</a>
+<a href="client_add" class="button" >Devenir Client</a>
 <br>
-<a href="vendeur_add" class="button" >Se connecter en tant que Vendeur</a>
+<a href="versPage_Client" class="button" >Deja Client? (Se connecter a mon espace Client)</a>
+
+<br>
+<a href="vendeur_add" class="button" >Devenir Vendeur</a>
+
+
+<br>
+<a href="versPage_Vendeur" class="button" >Deja Vendeur? (Se connecter a mon espace Vendeur)</a>
 
  
 </body>

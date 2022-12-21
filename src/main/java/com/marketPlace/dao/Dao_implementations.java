@@ -1,5 +1,7 @@
 package com.marketPlace.dao;
 
+import java.util.ArrayList;
+
 import org.hibernate.Session;
 
 
@@ -15,8 +17,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import com.marketPlace.model.Client;
+import com.marketPlace.model.Inventaire;
+import com.marketPlace.model.Produit;
 import com.marketPlace.model.Utilisateur;
 import com.marketPlace.model.Vendeur;
+
+import fondamentaux_web.Article;
 
 
 
@@ -57,15 +63,44 @@ public class Dao_implementations implements Dao {
 	
 
 	public void ajout_Client_a_User(Client client1, int idUser) {
-		
 		Session session= sessionFactory.getCurrentSession();
-	
 		Utilisateur utilisateur1 = session.get(Utilisateur.class, idUser);
 		System.out.println(utilisateur1);
 		utilisateur1.setObj_client(client1);
 		session.saveOrUpdate(client1);
 		session.saveOrUpdate(utilisateur1);
 	}
+	
+	
+	
+	public void ajout_Produit_a_Vendeur(Produit produit1, int idUser, String quantite) {
+		Session session= sessionFactory.getCurrentSession();
+		Utilisateur utilisateur1 = session.get(Utilisateur.class, idUser);
+		Vendeur vendeur1=utilisateur1.getObj_vendeur();
+		System.out.println("Le ID est: " + vendeur1.getId());
+		Inventaire inventaire1= new Inventaire();
+		int number_quantite = Integer.parseInt(quantite);
+		inventaire1.setQuantité(number_quantite);
+		inventaire1.setProd(produit1);
+		inventaire1.setObj_vendeur(vendeur1);
+		session.saveOrUpdate(produit1);
+		session.saveOrUpdate(inventaire1);
+	}
+	/*
+	//-----
+	public  _a_Vendeur(Produit produit1, int idUser, String quantite) {
+		Session session= sessionFactory.getCurrentSession();
+		Utilisateur utilisateur1 = session.get(Utilisateur.class, idUser);
+		Vendeur vendeur1=utilisateur1.getObj_vendeur();
+		System.out.println("Le ID est: " + vendeur1.getId());
+		Inventaire inventaire1= new Inventaire();
+		int number_quantite = Integer.parseInt(quantite);
+		inventaire1.setQuantité(number_quantite);
+		inventaire1.setProd(produit1);
+		inventaire1.setObj_vendeur(vendeur1);
+		session.saveOrUpdate(produit1);
+		session.saveOrUpdate(inventaire1);
+	}*/
 	
 	public void ajout_Vendeur_a_User(Vendeur vendeur1, int idUser) {
 		Session session= sessionFactory.getCurrentSession();

@@ -2,6 +2,7 @@ package com.marketPlace.model;
 
 import java.sql.Blob; 
 
+
 import java.sql.Date;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -35,82 +37,91 @@ public class Produit {
 	
 	
 	@Column(name = "nom")
-	@NotNull(message = "les champ doit être rempli")
-	@Size(min = 1, message = "le champ doit etre rempli")
+	//@NotNull(message = "les champ doit être rempli")
+	//@Size(min = 1, message = "le champ doit etre rempli")
 	private String nom;
 	
 	@Column(name = "prix")
-	@NotNull(message = "les champ doit être rempli")
-	@Size(min = 1, message = "le champ doit etre rempli")
+	//@NotNull(message = "les champ doit être rempli")
+	//@Size(min = 1, message = "le champ doit etre rempli")
 	private int prix;
 	
 	@Column(name = "taille")
-	@NotNull(message = "les champ doit être rempli")
-	@Size(min = 1, message = "le champ doit etre rempli")
+	//@NotNull(message = "les champ doit être rempli")
+	//@Size(min = 1, message = "le champ doit etre rempli")
 	private String taille;
 	
 	@Column(name = "couleur")
-	@NotNull(message = "les champ doit être rempli")
-	@Size(min = 1, message = "le champ doit etre rempli")
+	//@NotNull(message = "les champ doit être rempli")
+	//@Size(min = 1, message = "le champ doit etre rempli")
 	private String couleur;
 	
 	@Column(name = "type")
-	@NotNull(message = "les champ doit être rempli")
-	@Size(min = 1, message = "le champ doit etre rempli")
+	//@NotNull(message = "les champ doit être rempli")
+	//@Size(min = 1, message = "le champ doit etre rempli")
 	private String type;
 	
-	
-	@NotNull(message = "les champ doit être rempli")
-	@Size(min = 1, message = "le champ doit etre rempli")
+	@Transient
+	//@NotNull(message = "les champ doit être rempli")
+	//@Size(min = 1, message = "le champ doit etre rempli")
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name="vendeur_id")
 	private Vendeur vend;
 	
+	@Transient
 	@Column(name = "note_moyenne")
-	@NotNull(message = "les champ doit être rempli")
-	@Size(min = 1, message = "le champ doit etre rempli")
+	//@NotNull(message = "les champ doit être rempli")
+	//@Size(min = 1, message = "le champ doit etre rempli")
 	private float note_moyenne;
 	
+	@Transient
 	@Column(name = "image_1")
-	@NotNull(message = "les champ doit être rempli")
-	@Size(min = 1, message = "le champ doit etre rempli")
+	//@NotNull(message = "les champ doit être rempli")
+	//@Size(min = 1, message = "le champ doit etre rempli")
 	private Blob image_1;
 	
+	@Transient
 	@Column(name = "image_2")
-	@NotNull(message = "les champ doit être rempli")
-	@Size(min = 1, message = "le champ doit etre rempli")
+	//@NotNull(message = "les champ doit être rempli")
+	//@Size(min = 1, message = "le champ doit etre rempli")
 	private Blob image_2;
 	
+	@Transient
 	@Column(name = "image_3")
-	@NotNull(message = "les champ doit être rempli")
-	@Size(min = 1, message = "le champ doit etre rempli")
+	//@NotNull(message = "les champ doit être rempli")
+	//@Size(min = 1, message = "le champ doit etre rempli")
 	private Blob image_3;
 	
+	@Transient
 	@Column(name = "image_4")
-	@NotNull(message = "les champ doit être rempli")
-	@Size(min = 1, message = "le champ doit etre rempli")
+	//@NotNull(message = "les champ doit être rempli")
+	//@Size(min = 1, message = "le champ doit etre rempli")
 	private Blob image_4;
 	
+	@Transient
 	@Column(name = "date_de_creation")
-	@NotNull(message = "les champ doit être rempli")
-	@Size(min = 1, message = "le champ doit etre rempli")
+	//@NotNull(message = "les champ doit être rempli")
+	//@Size(min = 1, message = "le champ doit etre rempli")
 	private Date datedecreation;
 	
-	
+	@Transient
 	@Column(name = "datedemodification")
-	@NotNull(message = "les champ doit être rempli")
-	@Size(min = 1, message = "le champ doit etre rempli")
+	//@NotNull(message = "les champ doit être rempli")
+	//@Size(min = 1, message = "le champ doit etre rempli")
 	private Date datedemodification;
 	
+	@Transient
 	@OneToOne(mappedBy="prod",cascade=CascadeType.ALL)
 	private Inventaire inventaire;
 	
+	@Transient
 	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="panier",
 	joinColumns= {@JoinColumn(name="produit_id")},
 	inverseJoinColumns= { @JoinColumn(name = "client_id")})
 	private List<Client> listclient;
 	
+	@Transient
 	@OneToOne(mappedBy="produitId",cascade=CascadeType.ALL)
 	private Historique historique;
 	

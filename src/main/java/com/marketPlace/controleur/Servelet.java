@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.marketPlace.model.Client;
+import com.marketPlace.model.Produit;
 import com.marketPlace.model.Utilisateur;
 import com.marketPlace.model.Vendeur;
 import com.marketPlace.service.Service1;
@@ -58,6 +59,17 @@ public class Servelet {
 		return "Utilisateur_Connexion";
 	}
 	
+	@RequestMapping("/versPage_Vendeur")
+	public String versPage_Vendeur() {
+		return "Page_Vendeur";
+	}
+	
+	@RequestMapping("/versPage_Client")
+	public String versPage_Client() {
+		return "Page_Client";
+	}
+	
+	
 	
 	@RequestMapping("/versPage_Inscrire_Utilisateur")
 	public String InitialiserListe( Model model) {
@@ -70,6 +82,27 @@ public class Servelet {
 		
 	}
 	
+	@RequestMapping("/versPage_AjouterProduit_aVendeur")
+	public String versPage_AjouterProduit_aVendeur( Model model) {
+		
+		Produit produit1= new Produit();
+	
+		model.addAttribute("produit1",produit1);
+		return "Produit_formulaire";
+	}
+	
+	@RequestMapping("/produit_add_toVendeur")
+	public String produit_add_toVendeur(@Valid @ModelAttribute("produit1") Produit produit1, BindingResult bindingResult, HttpServletRequest request) {
+		//etudiant1.setId(5);
+		
+		String quantite= request.getParameter("quantite");
+		System.out.println("quantite is :  " + quantite);
+		
+		service1.ajout_Produit_a_Vendeur(produit1,this.utilisateurActuel_ID,quantite );
+		
+
+			return "Page_Vendeur";
+		}
 	
 	
 	@RequestMapping("/client_add")
@@ -113,7 +146,7 @@ public class Servelet {
 		
 		if(service1.ajout_Utilisateur_and_Return_his_ID(utilisateur1)==-1) {
 			System.out.println("Returne -1");
-			return "Utilisateur_formulaire";
+			return "Utilisateur_formulaire(deja Existant)";
 		}else {
 			//return "/client_add";
 			

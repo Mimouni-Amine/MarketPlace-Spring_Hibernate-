@@ -35,8 +35,8 @@ public class Inventaire {
     
 	
 	@Column(name = "quantité")
-	@NotNull(message = "les champ doit être rempli")
-	@Size(min = 1, message = "le champ doit etre rempli")
+	//@NotNull(message = "les champ doit être rempli")
+	//@Size(min = 1, message = "le champ doit etre rempli")
 	private int quantité;
 	
 	

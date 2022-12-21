@@ -3,6 +3,7 @@ package com.marketPlace.service;
 import org.hibernate.Session;
 
 
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.marketPlace.dao.Dao;
+
 import com.marketPlace.model.Client;
+import com.marketPlace.model.Produit;
 import com.marketPlace.model.Utilisateur;
 import com.marketPlace.model.Vendeur;
 
@@ -56,5 +59,13 @@ public class Service_Implementations implements Service1 {
 	public int get_User_ID(Utilisateur utilisateur1) {
 		return utilisateur_dao1.get_User_ID(utilisateur1);
 	}
+	
+	@Transactional
+	@Override
+	public void ajout_Produit_a_Vendeur(Produit produit1, int idUser, String quantite) {
+		utilisateur_dao1.ajout_Produit_a_Vendeur( produit1, idUser, quantite);
+		
+	}
+
 
 }
