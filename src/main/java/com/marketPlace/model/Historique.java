@@ -1,6 +1,7 @@
-package market_test;
+package com.marketPlace.model;
 
 import java.util.Date;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;

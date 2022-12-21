@@ -1,6 +1,7 @@
-package market_test;
+package com.marketPlace.model;
 
 import java.sql.Blob; 
+
 import java.sql.Date;
 import java.util.List;
 
@@ -21,7 +22,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import hibernate_project.Instructor;
+
 
 @Entity
 @Table(name="produit")

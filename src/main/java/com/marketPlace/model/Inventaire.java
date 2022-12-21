@@ -1,4 +1,4 @@
-package market_test;
+package com.marketPlace.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

@@ -21,6 +21,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="addresse")
@@ -34,15 +37,24 @@ public class Addresse {
 
 	
 	@Column(name="rue")
+	@NotNull(message = "les champ doit être rempli")
+	@Size(min = 1, message = "le champ doit etre rempli")
 	private String rue;
 	
 	@Column(name="numero")
+	@NotNull(message = "les champ doit être rempli")
+	@Size(min = 1, message = "le champ doit etre rempli")
 	private String numero;	
 	
 	@Column(name="code_postal")
+	@Pattern(regexp = "^(?:0[1-9]|[1-8]\\d|9[0-8])\\d{3}$")
+	@NotNull(message = "les champ doit être rempli")
+	@Size(min = 1, message = "le champ doit etre rempli")
 	private String code_postal;
 
 	@Column(name="ville")
+	@NotNull(message = "les champ doit être rempli")
+	@Size(min = 1, message = "le champ doit etre rempli")
 	private String ville;
 	
 	

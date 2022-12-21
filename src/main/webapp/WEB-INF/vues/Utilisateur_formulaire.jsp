@@ -190,6 +190,7 @@ body {
 <body>
 
 
+<c:if test="something"><script type="text/javascript">foon()</script></c:if>
 
 
 <!-- 	<form action="resultat_formulaire.jsp"> -->
