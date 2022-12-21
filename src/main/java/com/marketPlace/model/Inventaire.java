@@ -1,6 +1,7 @@
 package com.marketPlace.model;
 
 import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,6 +17,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 
+
 @Entity
 @Table(name="inventaire")
 public class Inventaire {
@@ -29,6 +31,8 @@ public class Inventaire {
 	@JoinColumn(name="produit_id")
 	private Produit prod;
 	
+    
+    
 	
 	@Column(name = "quantité")
 	@NotNull(message = "les champ doit être rempli")
@@ -36,11 +40,11 @@ public class Inventaire {
 	private int quantité;
 	
 	
-    @OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL, fetch= FetchType.LAZY)
 	@JoinColumn(name="vendeur_id")
-	private Vendeur vend;
+	private Vendeur obj_vendeur;
 
-	
+
 	
 	
 	
@@ -55,15 +59,37 @@ public class Inventaire {
 
 
 
-	public Inventaire(int id, Produit prod,
+
+
+
+
+	public Inventaire(Produit prod,
 			@NotNull(message = "les champ doit être rempli") @Size(min = 1, message = "le champ doit etre rempli") int quantité,
-			Vendeur vend) {
+			Vendeur obj_vendeur) {
 		super();
-		this.id = id;
 		this.prod = prod;
 		this.quantité = quantité;
-		this.vend = vend;
+		this.obj_vendeur = obj_vendeur;
 	}
+
+
+
+
+
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "Inventaire [id=" + id + ", prod=" + prod + ", quantité=" + quantité + ", obj_vendeur=" + obj_vendeur
+				+ "]";
+	}
+
+
+
+
 
 
 
@@ -124,8 +150,12 @@ public class Inventaire {
 
 
 
-	public Vendeur getVendeur_id() {
-		return vend;
+
+
+
+
+	public Produit getProd() {
+		return prod;
 	}
 
 
@@ -133,12 +163,45 @@ public class Inventaire {
 
 
 
-	public void setVendeur_id(Vendeur vend) {
-		this.vend = vend;
+
+
+
+
+	public void setProd(Produit prod) {
+		this.prod = prod;
 	}
 
-	
-	
+
+
+
+
+
+
+
+
+
+	public Vendeur getObj_vendeur() {
+		return obj_vendeur;
+	}
+
+
+
+
+
+
+
+
+
+
+	public void setObj_vendeur(Vendeur obj_vendeur) {
+		this.obj_vendeur = obj_vendeur;
+	}
+
+
+
+
+
+
 	
 	
 	

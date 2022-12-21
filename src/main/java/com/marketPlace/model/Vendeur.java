@@ -3,6 +3,7 @@ package com.marketPlace.model;
 import java.io.FileWriter;
 
 
+
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.sql.Blob;
@@ -23,6 +24,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+
 
 @Entity
 @Table(name="vendeur")
@@ -46,6 +49,8 @@ public class Vendeur {
 	private Utilisateur obj_utilisateur;
 	
 
+	@OneToMany(mappedBy= "obj_vendeur",cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	private List<Inventaire> listInventaire;
 	
 	public Vendeur() {
 		
@@ -88,6 +93,16 @@ public class Vendeur {
 
 	public void setObj_utilisateur(Utilisateur obj_utilisateur) {
 		this.obj_utilisateur = obj_utilisateur;
+	}
+
+
+	public List<Inventaire> getListInventaire() {
+		return listInventaire;
+	}
+
+
+	public void setListInventaire(List<Inventaire> listInventaire) {
+		this.listInventaire = listInventaire;
 	}	
 	
 	
